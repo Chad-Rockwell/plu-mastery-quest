@@ -3,16 +3,15 @@ import { StyleSheet, View, Alert, Text, ScrollView } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { supabase } from "../utils/supabase.js";
 
-export default function ProduceList() {
+export default function ProduceList({ isModalVisible }) {
   const [produce, setProduce] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if(search === '') {
-        loadProduce();
-    }
-    else {
-        searchProduce();
+    if (search === "") {
+      loadProduce();
+    } else {
+      searchProduce();
     }
   }, [search]);
   async function loadProduce() {
@@ -38,7 +37,7 @@ export default function ProduceList() {
       const { data, error, status } = await supabase
         .from("produce")
         .select(`produce_name, produce_code, id`)
-        .ilike('produce_name', `%${search}%`)
+        .ilike("produce_name", `%${search}%`);
       if (error && status !== 406) {
         throw error;
       }
@@ -89,14 +88,14 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   searchContainer: {
-    backgroundColor: 'transparent',
-    borderBottomColor: 'transparent',
-    borderTopColor: 'transparent',
+    backgroundColor: "transparent",
+    borderBottomColor: "transparent",
+    borderTopColor: "transparent",
     paddingHorizontal: 16,
-},
-searchInputContainer: {
-    backgroundColor: '#f0f0f0',
-},
+  },
+  searchInputContainer: {
+    backgroundColor: "#f0f0f0",
+  },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
