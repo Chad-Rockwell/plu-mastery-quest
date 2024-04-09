@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Alert, Text, ScrollView } from "react-native";
+import {router} from "expo-router";
+import { StyleSheet, View, Alert, Text, ScrollView, TouchableOpacity } from "react-native";
 import { SearchBar } from "react-native-elements";
-import { supabase } from "../utils/supabase.js";
+import { supabase } from "../../utils/supabase.js";
 
 export default function ProduceList({ isModalVisible }) {
   const [produce, setProduce] = useState([]);
@@ -54,6 +55,9 @@ export default function ProduceList({ isModalVisible }) {
   return (
     <View contentContainerStyle={styles.container}>
       <View style={{ paddingTop: 35 }} />
+      {!isModalVisible && (
+        <TouchableOpacity onPress={router.back} style={styles.squareButton}><Text style={styles.buttonText}>Go Home</Text></TouchableOpacity>
+      )}
       <SearchBar
         placeholder="Search..."
         onChangeText={setSearch}
@@ -77,7 +81,7 @@ export default function ProduceList({ isModalVisible }) {
             </View>
           );
         })}
-        <View style={{ paddingBottom: 360 }} />
+        <View style={{ paddingBottom: 230 }} />
       </ScrollView>
     </View>
   );
@@ -120,5 +124,22 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  squareButton: {
+    width: 100,
+    height: 40,
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+    marginLeft:150,
+  },
+  buttonText: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: 'white',
+    textShadowColor: 'black',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
 });

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {router} from "expo-router";
 import {
   StyleSheet,
   View,
@@ -8,7 +9,7 @@ import {
   Modal,
   TouchableOpacity,
 } from "react-native";
-import { supabase } from "../utils/supabase.js";
+import { supabase } from "../../utils/supabase.js";
 import ProduceList from "./ProduceList";
 import Keypad from "./Keypad.js";
 
@@ -125,7 +126,7 @@ export default function Game() {
         <Text onPress={giveHint} style={styles.buttonText}>Hint</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.exitButton}>
-        <Text style={styles.buttonText}>Exit Game</Text>
+        <Text style={styles.buttonText} onPress={()=> router.push("/components/Home")}>Exit Game</Text>
       </TouchableOpacity>
       </View>
       <Modal
@@ -141,7 +142,7 @@ export default function Game() {
             paddingTop: 30,
           }}
         >
-          <ProduceList />
+          <ProduceList isModalVisible={modalVisible}/>
           <TouchableOpacity onPress={toggleModal} style={styles.squareButton}>
             <Text style={styles.buttonText}>Close Produce List</Text>
           </TouchableOpacity>

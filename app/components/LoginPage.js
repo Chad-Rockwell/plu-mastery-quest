@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, StyleSheet, View, AppState } from 'react-native';
-import { supabase } from '../utils/supabase.js';
+import { supabase } from '../../utils/supabase.js';
 import { Button, Input } from 'react-native-elements';
 
 export default function Auth() {

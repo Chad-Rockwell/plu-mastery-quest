@@ -2,11 +2,13 @@ import "react-native-url-polyfill/auto";
 import React, { useState, useEffect } from "react";
 import { View } from "react-native";
 import { supabase } from "./utils/supabase.js";
-import Auth from "./components/LoginPage.js";
-import Account from "./components/Account.js";
-import ProduceList from "./components/ProduceList.js";
-import Game from "./components/Game.js";
+import Auth from "./app/components/LoginPage.js";
+import Account from "./app/components/Account.js";
+import ProduceList from "./app/components/ProduceList.js";
+import Game from "./app/components/Game.js";
+import Home from "./app/components/Home.js";
 import { Session } from "@supabase/supabase-js";
+
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -30,7 +32,7 @@ export default function App() {
     //   {session && session.user ? <Account key={session.user.id} session={session} /> : <Auth />}
     // </View>
     <View>
-      <Game />
+      <Home/>
     </View>
   );
 }
